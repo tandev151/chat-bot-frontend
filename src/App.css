@@ -97,29 +97,6 @@
 
 /* Message Tails (Basic CSS Triangles) */
 /* This is a simplified tail. More complex tails might require more pseudo-elements or SVG. */
-.message-content::before {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  bottom: 0px; /* Align with the bottom of the bubble */
-}
-
-.message-user .message-content::before {
-  border-width: 0 0 15px 15px; /* Creates a triangle pointing left-up */
-  border-color: transparent transparent #e1ffc7 transparent; /* Match user bubble color */
-  right: -10px; /* Position tail outside the bubble on the right */
-  /* transform: translateY(-50%); */ /* Adjust vertical alignment if needed */
-}
-
-.message-bot .message-content::before,
-.message-server_info .message-content::before {
-  border-width: 0 15px 15px 0; /* Creates a triangle pointing right-up */
-  border-color: transparent transparent #ffffff transparent; /* Match incoming bubble color */
-  left: -10px; /* Position tail outside the bubble on the left */
-  /* transform: translateY(-50%); */ /* Adjust vertical alignment if needed */
-}
 
 /* Sender Name/Label Styling (based on your current strong tag) */
 .message-content strong {
@@ -196,7 +173,7 @@
   background-color: #527da3; /* Telegram blue for send button */
   color: white;
   border: none;
-  border-radius: 50%; /* Circular button if it's an icon */
+  border-radius: 20px; /* Circular button if it's an icon */
   /* border-radius: 20px; For a pill-shaped button if text */
   cursor: pointer;
   font-size: 1em; /* For text button */

@@ -11,7 +11,7 @@ const ChatContainer = () => {
     <>
       <div className='app-container'>
         <header className='app-header'>
-          <h1>Native WebSocket Chat</h1>
+          <h1>Con AI ChatBot Lởm của TL </h1>
           <button onClick={handleClick}>Show Component</button>
         </header>
         <Suspense fallback={<div>Loading...</div>}>
