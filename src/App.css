@@ -40,3 +40,175 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Chat Window Styling */
+.chat-window {
+  flex-grow: 1;
+  padding: 10px 10px 20px 10px; /* Add more padding at the bottom */
+  overflow-y: auto;
+  background-color: #e5e5e5; /* Telegram's chat background color (can be customized with patterns) */
+  /* If using a background image pattern for body, you might want this to be transparent or semi-transparent */
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Minimal gap, message grouping handles more */
+}
+
+.message-item {
+  display: flex; /* Used for aligning the bubble container */
+  margin-bottom: 8px;
+  position: relative; /* For the tail */
+  max-width: 75%; /* Max width of a message bubble */
+  word-wrap: break-word;
+}
+
+.message-content {
+  padding: 8px 12px;
+  border-radius: 18px; /* Rounded bubbles */
+  line-height: 1.4;
+  font-size: 0.95em;
+  position: relative; /* For tail positioning if needed for complex tails */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Sender-specific alignment and colors */
+.message-user {
+  align-self: flex-end; /* User messages to the right */
+}
+.message-user .message-content {
+  background-color: #e1ffc7; /* Telegram outgoing message color (light green) */
+  color: #000;
+  border-bottom-right-radius: 5px; /* Part of the "tail" effect / grouping */
+}
+
+.message-bot,
+.message-server_info {
+  /* Bot and Server messages to the left */
+  align-self: flex-start;
+}
+.message-bot .message-content,
+.message-server_info .message-content {
+  background-color: #ffffff; /* Telegram incoming message color (white) */
+  color: #000;
+  border-bottom-left-radius: 5px; /* Part of the "tail" effect / grouping */
+}
+
+/* Message Tails (Basic CSS Triangles) */
+/* This is a simplified tail. More complex tails might require more pseudo-elements or SVG. */
+.message-content::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  bottom: 0px; /* Align with the bottom of the bubble */
+}
+
+.message-user .message-content::before {
+  border-width: 0 0 15px 15px; /* Creates a triangle pointing left-up */
+  border-color: transparent transparent #e1ffc7 transparent; /* Match user bubble color */
+  right: -10px; /* Position tail outside the bubble on the right */
+  /* transform: translateY(-50%); */ /* Adjust vertical alignment if needed */
+}
+
+.message-bot .message-content::before,
+.message-server_info .message-content::before {
+  border-width: 0 15px 15px 0; /* Creates a triangle pointing right-up */
+  border-color: transparent transparent #ffffff transparent; /* Match incoming bubble color */
+  left: -10px; /* Position tail outside the bubble on the left */
+  /* transform: translateY(-50%); */ /* Adjust vertical alignment if needed */
+}
+
+/* Sender Name/Label Styling (based on your current strong tag) */
+.message-content strong {
+  display: block; /* Make it a block to take full width or control margin */
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 3px;
+  color: #3ca5dc; /* Default color, can be sender-specific */
+}
+
+/* Hide "You" for user's own messages, as is typical in Telegram */
+.message-user .message-content strong {
+  display: none;
+}
+
+.message-bot .message-content strong {
+  color: #4caf50; /* Example: Green for bot name */
+}
+.message-server_info .message-content strong {
+  color: #f57c00; /* Example: Orange for server/system info messages */
+  font-style: italic;
+}
+
+.message-text {
+  /* Main text doesn't need much specific styling if font is set on body/container */
+  white-space: pre-wrap; /* Respect newlines and spaces */
+}
+
+.message-timestamp {
+  font-size: 0.7em;
+  color: #8a8a8a; /* Lighter color for timestamp */
+  margin-top: 5px;
+  display: block; /* Take its own line or use float/flex for positioning */
+  text-align: right;
+}
+.message-bot .message-timestamp,
+.message-server_info .message-timestamp {
+  color: #aaa; /* Slightly different timestamp color for incoming if desired */
+}
+
+/* Typing Indicator (basic styling, assuming it exists) */
+.typing-indicator {
+  padding: 5px 15px;
+  font-style: italic;
+  color: #777;
+  font-size: 0.9em;
+  text-align: left; /* Or center */
+}
+
+/* Message Form Styling (to complement Telegram style) */
+.message-form {
+  display: flex;
+  padding: 10px;
+  background-color: #f5f5f5; /* Light grey background for input area */
+  border-top: 1px solid #ddd;
+  flex-shrink: 0; /* Prevent form from shrinking */
+}
+
+.message-form input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px; /* Rounded input field */
+  margin-right: 10px;
+  font-size: 0.95em;
+  outline: none;
+}
+.message-form input:focus {
+  border-color: #527da3; /* Highlight on focus */
+}
+
+.message-form button {
+  padding: 10px 15px; /* Adjust padding for icon buttons if you use them */
+  background-color: #527da3; /* Telegram blue for send button */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Circular button if it's an icon */
+  /* border-radius: 20px; For a pill-shaped button if text */
+  cursor: pointer;
+  font-size: 1em; /* For text button */
+  /* For icon button, you'd set width, height and use a background image or SVG */
+  /* e.g., width: 40px; height: 40px; */
+}
+
+.message-form button:hover {
+  background-color: #436583;
+}
+
+.message-form button:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
+}
